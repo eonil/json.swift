@@ -30,31 +30,38 @@ import Foundation
 
 
 
-//
-//	Fragment description is missing due to lack of implementation in Cocoa.
-//	We need to implement our own generator and parser.
-//
-/////	MARK:
-//extension RFC4627.Value: Printable {
-//	public var description:Swift.String {
-//		get {
-//			
-//			
+/// Fragment description is missing due to lack of implementation in Cocoa.
+/// We need to implement our own generator and parser.
+extension JSON.Value: CustomStringConvertible {
+	public var description:Swift.String {
+		get {
 //			switch self {
 //			case let .Object(s):	return	"{}"
-//			case let .Array(s):		return	"[]"
+//			case let .Array(s):	return	"[]"
 //			case let .String(s):	return	"\"\""
 //			case let .Number(s):	return	""
 //			case let .Boolean(s):	return	""
 //			case let .Null:			return	"null"
 //			}
-//			
-////			let	d1	=	JSON.serialise(self)
-////			let	s2	=	NSString(data: d1!, encoding: NSUTF8StringEncoding) as Swift.String
-////			return	s2
-//		}
-//	}
-//}
+
+			do {
+				let	d1	=	try JSON.serialise(self)
+				let	s2	=	NSString(data: d1, encoding: NSUTF8StringEncoding) as Swift.String? ?? ""
+				return	s2 
+			}
+			catch let error {
+				return	"\(error)"
+			}
+		}
+	}
+}
+extension JSON.Value: CustomDebugStringConvertible {
+	public var debugDescription: String {
+		get {
+			return	description
+		}
+	}
+}
 
 
 
