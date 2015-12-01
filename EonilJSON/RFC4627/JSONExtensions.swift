@@ -35,14 +35,15 @@ import Foundation
 extension JSON.Value: CustomStringConvertible {
 	public var description: Swift.String {
 		get {
-//			switch self {
+			switch self {
 //			case let .Object(s):	return	"{}"
 //			case let .Array(s):	return	"[]"
-//			case let .String(s):	return	"\"\""
-//			case let .Number(s):	return	""
-//			case let .Boolean(s):	return	""
-//			case let .Null:			return	"null"
-//			}
+			case let .String(s):	return	"\"\(s)\""
+			case let .Number(s):	return	"\(s)"
+			case let .Boolean(s):	return	"\(s)"
+			case let .Null:		return	"null"
+			default:		break
+			}
 
 			do {
 				let	d1	=	try JSON.serialise(self)
