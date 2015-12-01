@@ -33,7 +33,7 @@ import Foundation
 /// Fragment description is missing due to lack of implementation in Cocoa.
 /// We need to implement our own generator and parser.
 extension JSON.Value: CustomStringConvertible {
-	public var description:Swift.String {
+	public var description: Swift.String {
 		get {
 //			switch self {
 //			case let .Object(s):	return	"{}"
@@ -56,7 +56,7 @@ extension JSON.Value: CustomStringConvertible {
 	}
 }
 extension JSON.Value: CustomDebugStringConvertible {
-	public var debugDescription: String {
+	public var debugDescription: Swift.String {
 		get {
 			return	description
 		}
