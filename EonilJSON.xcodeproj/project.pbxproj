@@ -14,6 +14,13 @@
 		459A37791C0DE0CD00E7479B /* JSONExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459A37741C0DE0CD00E7479B /* JSONExtensions.swift */; };
 		459A377A1C0DE0CD00E7479B /* JSONOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459A37751C0DE0CD00E7479B /* JSONOperators.swift */; };
 		459A377B1C0DE0CD00E7479B /* RFC4627.Unused.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459A37761C0DE0CD00E7479B /* RFC4627.Unused.swift */; };
+		459A37941C0DE29D00E7479B /* EonilJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459A378A1C0DE29C00E7479B /* EonilJSON.framework */; };
+		459A37A11C0DE31700E7479B /* EonilJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459A37661C0DE0C100E7479B /* EonilJSONTests.swift */; };
+		459A37A21C0DE33600E7479B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459A37731C0DE0CD00E7479B /* JSON.swift */; };
+		459A37A31C0DE33600E7479B /* JSONExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459A37741C0DE0CD00E7479B /* JSONExtensions.swift */; };
+		459A37A41C0DE33600E7479B /* JSONOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459A37751C0DE0CD00E7479B /* JSONOperators.swift */; };
+		459A37A51C0DE33600E7479B /* RFC4627.Unused.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459A37761C0DE0CD00E7479B /* RFC4627.Unused.swift */; };
+		459A37A61C0DE33A00E7479B /* EonilJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 459A375A1C0DE0C100E7479B /* EonilJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,19 +31,28 @@
 			remoteGlobalIDString = 459A37561C0DE0C100E7479B;
 			remoteInfo = EonilJSON;
 		};
+		459A37951C0DE29D00E7479B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 459A374E1C0DE0C100E7479B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 459A37891C0DE29C00E7479B;
+			remoteInfo = "EonilJSON for OSX";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		459A37571C0DE0C100E7479B /* EonilJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EonilJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		459A375A1C0DE0C100E7479B /* EonilJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EonilJSON.h; sourceTree = "<group>"; };
 		459A375C1C0DE0C100E7479B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		459A37611C0DE0C100E7479B /* EonilJSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EonilJSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		459A37611C0DE0C100E7479B /* EonilJSONTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EonilJSONTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		459A37661C0DE0C100E7479B /* EonilJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EonilJSONTests.swift; sourceTree = "<group>"; };
 		459A37681C0DE0C100E7479B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		459A37731C0DE0CD00E7479B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		459A37741C0DE0CD00E7479B /* JSONExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtensions.swift; sourceTree = "<group>"; };
 		459A37751C0DE0CD00E7479B /* JSONOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONOperators.swift; sourceTree = "<group>"; };
 		459A37761C0DE0CD00E7479B /* RFC4627.Unused.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFC4627.Unused.swift; sourceTree = "<group>"; };
+		459A378A1C0DE29C00E7479B /* EonilJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EonilJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		459A37931C0DE29D00E7479B /* EonilJSONTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EonilJSONTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +68,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				459A37621C0DE0C100E7479B /* EonilJSON.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		459A37861C0DE29C00E7479B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		459A37901C0DE29D00E7479B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459A37941C0DE29D00E7479B /* EonilJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,7 +102,9 @@
 			isa = PBXGroup;
 			children = (
 				459A37571C0DE0C100E7479B /* EonilJSON.framework */,
-				459A37611C0DE0C100E7479B /* EonilJSONTests.xctest */,
+				459A37611C0DE0C100E7479B /* EonilJSONTest.xctest */,
+				459A378A1C0DE29C00E7479B /* EonilJSON.framework */,
+				459A37931C0DE29D00E7479B /* EonilJSONTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,12 +150,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		459A37871C0DE29C00E7479B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459A37A61C0DE33A00E7479B /* EonilJSON.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		459A37561C0DE0C100E7479B /* EonilJSON */ = {
+		459A37561C0DE0C100E7479B /* EonilJSON for iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 459A376B1C0DE0C100E7479B /* Build configuration list for PBXNativeTarget "EonilJSON" */;
+			buildConfigurationList = 459A376B1C0DE0C100E7479B /* Build configuration list for PBXNativeTarget "EonilJSON for iOS" */;
 			buildPhases = (
 				459A37521C0DE0C100E7479B /* Sources */,
 				459A37531C0DE0C100E7479B /* Frameworks */,
@@ -133,14 +174,14 @@
 			);
 			dependencies = (
 			);
-			name = EonilJSON;
+			name = "EonilJSON for iOS";
 			productName = EonilJSON;
 			productReference = 459A37571C0DE0C100E7479B /* EonilJSON.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		459A37601C0DE0C100E7479B /* EonilJSONTests */ = {
+		459A37601C0DE0C100E7479B /* EonilJSON for iOS Test */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 459A376E1C0DE0C100E7479B /* Build configuration list for PBXNativeTarget "EonilJSONTests" */;
+			buildConfigurationList = 459A376E1C0DE0C100E7479B /* Build configuration list for PBXNativeTarget "EonilJSON for iOS Test" */;
 			buildPhases = (
 				459A375D1C0DE0C100E7479B /* Sources */,
 				459A375E1C0DE0C100E7479B /* Frameworks */,
@@ -151,9 +192,45 @@
 			dependencies = (
 				459A37641C0DE0C100E7479B /* PBXTargetDependency */,
 			);
-			name = EonilJSONTests;
+			name = "EonilJSON for iOS Test";
 			productName = EonilJSONTests;
-			productReference = 459A37611C0DE0C100E7479B /* EonilJSONTests.xctest */;
+			productReference = 459A37611C0DE0C100E7479B /* EonilJSONTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		459A37891C0DE29C00E7479B /* EonilJSON for OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 459A379B1C0DE29D00E7479B /* Build configuration list for PBXNativeTarget "EonilJSON for OSX" */;
+			buildPhases = (
+				459A37851C0DE29C00E7479B /* Sources */,
+				459A37861C0DE29C00E7479B /* Frameworks */,
+				459A37871C0DE29C00E7479B /* Headers */,
+				459A37881C0DE29C00E7479B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EonilJSON for OSX";
+			productName = "EonilJSON for OSX";
+			productReference = 459A378A1C0DE29C00E7479B /* EonilJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		459A37921C0DE29D00E7479B /* EonilJSON for OSX Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 459A379E1C0DE29D00E7479B /* Build configuration list for PBXNativeTarget "EonilJSON for OSX Test" */;
+			buildPhases = (
+				459A378F1C0DE29D00E7479B /* Sources */,
+				459A37901C0DE29D00E7479B /* Frameworks */,
+				459A37911C0DE29D00E7479B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				459A37961C0DE29D00E7479B /* PBXTargetDependency */,
+			);
+			name = "EonilJSON for OSX Test";
+			productName = "EonilJSON for OSXTests";
+			productReference = 459A37931C0DE29D00E7479B /* EonilJSONTest.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -172,6 +249,12 @@
 					459A37601C0DE0C100E7479B = {
 						CreatedOnToolsVersion = 7.1.1;
 					};
+					459A37891C0DE29C00E7479B = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					459A37921C0DE29D00E7479B = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
 				};
 			};
 			buildConfigurationList = 459A37511C0DE0C100E7479B /* Build configuration list for PBXProject "EonilJSON" */;
@@ -186,8 +269,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				459A37561C0DE0C100E7479B /* EonilJSON */,
-				459A37601C0DE0C100E7479B /* EonilJSONTests */,
+				459A37561C0DE0C100E7479B /* EonilJSON for iOS */,
+				459A37601C0DE0C100E7479B /* EonilJSON for iOS Test */,
+				459A37891C0DE29C00E7479B /* EonilJSON for OSX */,
+				459A37921C0DE29D00E7479B /* EonilJSON for OSX Test */,
 			);
 		};
 /* End PBXProject section */
@@ -201,6 +286,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		459A375F1C0DE0C100E7479B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		459A37881C0DE29C00E7479B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		459A37911C0DE29D00E7479B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -229,13 +328,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		459A37851C0DE29C00E7479B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459A37A21C0DE33600E7479B /* JSON.swift in Sources */,
+				459A37A41C0DE33600E7479B /* JSONOperators.swift in Sources */,
+				459A37A31C0DE33600E7479B /* JSONExtensions.swift in Sources */,
+				459A37A51C0DE33600E7479B /* RFC4627.Unused.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		459A378F1C0DE29D00E7479B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459A37A11C0DE31700E7479B /* EonilJSONTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		459A37641C0DE0C100E7479B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 459A37561C0DE0C100E7479B /* EonilJSON */;
+			target = 459A37561C0DE0C100E7479B /* EonilJSON for iOS */;
 			targetProxy = 459A37631C0DE0C100E7479B /* PBXContainerItemProxy */;
+		};
+		459A37961C0DE29D00E7479B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 459A37891C0DE29C00E7479B /* EonilJSON for OSX */;
+			targetProxy = 459A37951C0DE29D00E7479B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -280,6 +403,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -321,6 +445,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -341,7 +466,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Eonil.EonilJSON;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -359,7 +483,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Eonil.EonilJSON;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -370,7 +493,7 @@
 				INFOPLIST_FILE = EonilJSONTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Eonil.EonilJSONTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)Test";
 			};
 			name = Debug;
 		};
@@ -380,7 +503,75 @@
 				INFOPLIST_FILE = EonilJSONTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Eonil.EonilJSONTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)Test";
+			};
+			name = Release;
+		};
+		459A379C1C0DE29D00E7479B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "EonilJSON for OSX/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "Eonil.EonilJSON-for-OSX";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		459A379D1C0DE29D00E7479B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "EonilJSON for OSX/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "Eonil.EonilJSON-for-OSX";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		459A379F1C0DE29D00E7479B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "EonilJSON for OSXTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "Eonil.EonilJSON-for-OSXTests";
+				PRODUCT_NAME = "$(PROJECT_NAME)Test";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		459A37A01C0DE29D00E7479B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "EonilJSON for OSXTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "Eonil.EonilJSON-for-OSXTests";
+				PRODUCT_NAME = "$(PROJECT_NAME)Test";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -396,7 +587,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		459A376B1C0DE0C100E7479B /* Build configuration list for PBXNativeTarget "EonilJSON" */ = {
+		459A376B1C0DE0C100E7479B /* Build configuration list for PBXNativeTarget "EonilJSON for iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				459A376C1C0DE0C100E7479B /* Debug */,
@@ -405,7 +596,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		459A376E1C0DE0C100E7479B /* Build configuration list for PBXNativeTarget "EonilJSONTests" */ = {
+		459A376E1C0DE0C100E7479B /* Build configuration list for PBXNativeTarget "EonilJSON for iOS Test" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				459A376F1C0DE0C100E7479B /* Debug */,
@@ -413,6 +604,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		459A379B1C0DE29D00E7479B /* Build configuration list for PBXNativeTarget "EonilJSON for OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				459A379C1C0DE29D00E7479B /* Debug */,
+				459A379D1C0DE29D00E7479B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		459A379E1C0DE29D00E7479B /* Build configuration list for PBXNativeTarget "EonilJSON for OSX Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				459A379F1C0DE29D00E7479B /* Debug */,
+				459A37A01C0DE29D00E7479B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

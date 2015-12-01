@@ -364,7 +364,6 @@ private struct Converter {
 		
 		switch v1 {
 		case JSON.Value.Null:			return	NSNull()
-		case JSON.Value.Boolean(let state):	return	NSNumber(bool: state)
 		case let JSON.Value.Boolean(s1):	return	NSNumber(bool: s1)
 		case let JSON.Value.Number(s1):
 			switch s1 {
@@ -520,7 +519,7 @@ extension JSON {
 					] as Value
 				
 				print(a1.object!["aaa"]!)
-				let	v1	=	a1.object!["aaa"]!
+				let	_	=	a1.object!["aaa"]!
 				assert(a1.object!["aaa"]! == nil)
 				
 				let	a2	=	try! JSON.serialise(a1)
@@ -558,7 +557,7 @@ extension JSON {
 				assert(a3 == a1)
 				
 				print(a3.object!["aaa"]!)
-				let	v1	=	a3.object!["aaa"]!
+				_	=	a3.object!["aaa"]!
 				assert(a3.object!["aaa"]! == nil)
 				assert(a3.object!["fff"]! == [d1, d1, d1])
 			}
