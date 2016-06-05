@@ -13,8 +13,8 @@ import Foundation
 //public extension RFC4627 {
 //
 //	///	Returns `nil` for any errors.
-//	///	See `serialise` function for type-mapping informations.
-//	public static func deserialise(data:NSData) -> Any? {
+//	///	See `serialize` function for type-mapping informations.
+//	public static func deserialize(data:NSData) -> Any? {
 //		///	Converting from `Value` tree never raise an error.
 //		///	Returning `nil` is a normal regular value for JSON null.
 //		func fromValue(v1:Value) -> Any? {
@@ -49,7 +49,7 @@ import Foundation
 //			}
 //		}
 //
-//		let	v1	=	Value.deserialise(data)
+//		let	v1	=	Value.deserialize(data)
 //		return	v1 == nil ? Error.trap() : fromValue(v1!)
 //	}
 //
@@ -77,7 +77,7 @@ import Foundation
 //	///		exist. This cannot be supported until Swift to provide some generalised way to
 //	///		access array elements regardless of element type.
 //	///
-//	public static func serialise(value:Any?) -> NSData? {
+//	public static func serialize(value:Any?) -> NSData? {
 //
 //		func toValue(v0:Any?) -> Value? {
 //			func toArray(a1:[Any?]) -> Value? {
@@ -132,7 +132,7 @@ import Foundation
 //
 //		let	v2	=	toValue(value)
 //		if let v3 = v2 {
-//			return	Value.serialise(v3)
+//			return	Value.serialize(v3)
 //		}
 //		return	Error.trap()
 //	}

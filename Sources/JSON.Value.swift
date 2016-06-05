@@ -21,8 +21,8 @@ public extension JSON {
         case Null(())
     }
 
-    public typealias	Object	=	[Swift.String:Value]
-    public typealias	Array	=	[Value]
+    public typealias Object =   [Swift.String:Value]
+    public typealias Array  =   [Value]
 
 	///	Arbitrary precision number container.
 	public enum Number : Equatable {
@@ -141,18 +141,18 @@ public extension JSON.Value {
 }
 
 public extension JSON {
-	public static func deserialise(data:NSData) throws -> JSON.Value? {
+	public static func deserialize(data:NSData) throws -> JSON.Value? {
 		let	o2:AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
 		let	o3 = try Converter.convertFromOBJ(o2)
 		return o3
 	}
 	
-	public static func serialise(value:JSON.Value) throws -> NSData? {
-		return try serialise(value, allowFragment: false)
+	public static func serialize(value:JSON.Value) throws -> NSData? {
+		return try serialize(value, allowFragment: false)
 	}
 	///	This does not allow serialisation of fragment. A JSON value must be one
 	///	of object or array type. This limitation is due to limitation of `NSJSONSerialization` class.
-	static func serialise(value:JSON.Value, allowFragment:Bool) throws -> NSData? {
+	static func serialize(value:JSON.Value, allowFragment:Bool) throws -> NSData? {
 		assert(value.object != nil || value.array != nil)
 		let	o2:AnyObject	=	Converter.convertFromSwift(value)
 //		let	d3:NSData?		=	NSJSONSerialization.dataWithJSONObject(o2, options: (NSJSONWritingOptions.allZeros) | NSJSONWritingOptions.PrettyPrinted), error: &e1)
