@@ -11,8 +11,9 @@ import Foundation.NSJSONSerialization
 
 public extension JSON {
     public static func deserialize(data:NSData) throws -> JSON.Value {
-        let	o2:AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-        let	o3 = try Converter.convertFromOBJ(o2)
+        let	o1 = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+        guard let o2 = o1 as? NSObject else { throw JSON.Error("Internal `NSJSONSerialization.JSONObjectWithData` returned non-`NSObject` object. Unacceptable. \(o1)") }
+        let	o3 = try Converter.convertFromOBJC(o2)
         return o3
     }
 
@@ -63,14 +64,13 @@ private struct Converter {
     ///	Objective-C `nil` is not supported as an input.
     ///	Use `NSNull` which is standard way to represent `nil`
     ///	in data-structures in Cocoa.
-    static func convertFromOBJ(v1: AnyObject) throws -> Value {
-        assert(v1 is NSObject)
+    static func convertFromOBJC(v1: NSObject) throws -> Value {
         func convertArray(v1:NSArray) throws -> Value {
             var	a2 = [] as [Value]
             for m1 in v1 {
                 ///	Must be an OBJC type.
                 guard let m1 = m1 as? NSObject else { throw JSON.Error("Non-OBJC type object (that is not convertible) discovered.") }
-                let	m2 = try convertFromOBJ(m1)
+                let	m2 = try convertFromOBJC(m1)
                 a2.append(m2)
             }
             return	Value.Array(a2)
@@ -79,7 +79,8 @@ private struct Converter {
             var	o2	=	[:] as [String:Value]
             for p1 in v1 {
                 guard let k1 = p1.key as? NSString as? String else { throw JSON.Error("") }
-                let v2 = try convertFromOBJ(p1.value)
+                guard let p2 = p1.value as? NSObject else { throw JSON.Error("") }
+                let v2 = try convertFromOBJC(p2)
                 o2[k1] = v2
             }
             return	Value.Object(o2)
@@ -104,10 +105,10 @@ private struct Converter {
         if let v1 = v1 as? NSDictionary { return try convertObject(v1) }
         throw JSON.Error("Unsupported type. Failed.")
     }
-    static func convertFromSwift(v1:Value) -> AnyObject {
-        func convertArray(a1:[Value]) -> NSArray {
-            let	a2	=	NSMutableArray()
-            for m1 in v1.array! {
+    static func convertFromSwift(v1: Value) -> NSObject {
+        func convertArray(a1: [Value]) -> NSArray {
+            let	a2 = NSMutableArray()
+            for m1 in a1 {
                 let	m2 = convertFromSwift(m1)
                 a2.addObject(m2)
             }
