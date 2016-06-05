@@ -37,7 +37,7 @@ class EonilJSONTests: XCTestCase {
     func test1() throws {
         let	a1	=	"{ \"aaa\" : 123 }"
         let	a2	=	a1.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
-        let	a3	=	try JSON.deserialize(a2)!
+        let	a3	=	try JSON.deserialize(a2)
 
         let	a4	=	JSON.Value.Object([
             "aaa"	:	JSON.Value.Number(JSON.Number.Integer(123))
@@ -63,10 +63,10 @@ class EonilJSONTests: XCTestCase {
             ] as JSON.Value
 
 
-        let	a2	=	try JSON.serialize(a1)!
+        let	a2 = try JSON.serialize(a1)
         print(a2)
 
-        let	a3	=	try JSON.deserialize(a2)!
+        let	a3 = try JSON.deserialize(a2)
         print(a3)
 
         XCTAssert(a3 == a1)

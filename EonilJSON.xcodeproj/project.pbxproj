@@ -21,6 +21,8 @@
 		451C948B1D04584E00C5F640 /* Unused.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94631D044AD200C5F640 /* Unused.swift */; };
 		451C94951D04595400C5F640 /* EonilJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451C947F1D0457F300C5F640 /* EonilJSON.framework */; };
 		451C949B1D0459AD00C5F640 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C946F1D0451D800C5F640 /* Tests.swift */; };
+		451C94B51D04660000C5F640 /* JSON.Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94B41D04660000C5F640 /* JSON.Serialization.swift */; };
+		451C94B61D04662500C5F640 /* JSON.Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94B41D04660000C5F640 /* JSON.Serialization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,7 @@
 		451C94781D04555200C5F640 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		451C947F1D0457F300C5F640 /* EonilJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EonilJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		451C94901D04595400C5F640 /* EonilJSON-OSX-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EonilJSON-OSX-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		451C94B41D04660000C5F640 /* JSON.Serialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.Serialization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,7 @@
 				451C945F1D044AD200C5F640 /* JSON.swift */,
 				451C94601D044AD200C5F640 /* JSON.Error.swift */,
 				451C94621D044AD200C5F640 /* JSON.Value.swift */,
+				451C94B41D04660000C5F640 /* JSON.Serialization.swift */,
 				451C94611D044AD200C5F640 /* JSON.Operators.swift */,
 				451C94631D044AD200C5F640 /* Unused.swift */,
 			);
@@ -310,6 +314,7 @@
 				451C94651D044AD200C5F640 /* JSON.Error.swift in Sources */,
 				451C94671D044AD200C5F640 /* JSON.Value.swift in Sources */,
 				451C94641D044AD200C5F640 /* JSON.swift in Sources */,
+				451C94B51D04660000C5F640 /* JSON.Serialization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +335,7 @@
 				451C948A1D04584E00C5F640 /* JSON.Operators.swift in Sources */,
 				451C948B1D04584E00C5F640 /* Unused.swift in Sources */,
 				451C94881D04584E00C5F640 /* JSON.Error.swift in Sources */,
+				451C94B61D04662500C5F640 /* JSON.Serialization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +621,7 @@
 				451C949A1D04595400C5F640 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
