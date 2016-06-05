@@ -1,4 +1,4 @@
 language: swift
 script:
-  - xctool -workspace EonilJSON.xcworkspace -scheme EonilJSON-iOS -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-  - xctool test -workspace EonilJSON.xcworkspace -scheme EonilJSON-iOS-Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+  - xctool -project EonilJSON.xcodeproj -scheme EonilJSON-iOS -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+  - xctool test -project EonilJSON.xcodeproj -scheme EonilJSON-iOS-Tests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
