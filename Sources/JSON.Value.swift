@@ -314,38 +314,40 @@ extension JSON.Value : NilLiteralConvertible, BooleanLiteralConvertible, Integer
 
 
 
-///	MARK:
-///	MARK:	Private Stuffs
-///	MARK:
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: - Privates
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///	Converts JSON tree between Objective-C and Swift representations.
 private struct Converter {
 	typealias Value = JSON.Value
-	
+
+    /// Gets strongly typed JSON tree.
+    ///
+    /// This function assumes input fully convertible data.
+    /// Throws any error in conversion.
+    ///
 	///	Objective-C `nil` is not supported as an input.
 	///	Use `NSNull` which is standard way to represent `nil`
 	///	in data-structures in Cocoa.
-	static func convertFromOBJ(v1: AnyObject) throws -> Value? {
+	static func convertFromOBJ(v1: AnyObject) throws -> Value {
 		assert(v1 is NSObject)
-		func convertArray(v1:NSArray) throws -> Value? {
-			var	a2	=	[] as [Value]
+		func convertArray(v1:NSArray) throws -> Value {
+			var	a2 = [] as [Value]
 			for m1 in v1 {
 				///	Must be an OBJC type.
-                guard m1 is NSObject else { throw JSON.Error("Non-OBJC type object (that is not convertible) discovered.") }
-				let	m2 = try convertFromOBJ(m1 as! NSObject)
-                guard m2 != nil else { throw JSON.Error("") }
-				a2.append(m2!)
+                guard let m1 = m1 as? NSObject else { throw JSON.Error("Non-OBJC type object (that is not convertible) discovered.") }
+				let	m2 = try convertFromOBJ(m1)
+				a2.append(m2)
 			}
 			return	Value.Array(a2)
 		}
-		func convertObject(v1:NSDictionary) throws -> Value? {
+		func convertObject(v1:NSDictionary) throws -> Value {
 			var	o2	=	[:] as [String:Value]
 			for p1 in v1 {
-				let	k1	=	p1.key as? String
-                guard k1 != nil else { throw JSON.Error("") }
-				let	v2 = try convertFromOBJ(p1.value)
-                guard v2 != nil else { throw JSON.Error("") }
-				o2[k1! as String] = v2!
+                guard let k1 = p1.key as? NSString as? String else { throw JSON.Error("") }
+				let v2 = try convertFromOBJ(p1.value)
+				o2[k1] = v2
 			}
 			return	Value.Object(o2)
 		}
@@ -364,9 +366,9 @@ private struct Converter {
 				return	Value.Number(JSON.Number.Integer(v2.longLongValue))
 			}
 		}
-		if v1 is NSString { return Value.String(v1 as! NSString as String) }
-		if v1 is NSArray { return try convertArray(v1 as! NSArray) }
-		if v1 is NSDictionary { return try convertObject(v1 as! NSDictionary) }
+        if let v1 = v1 as? NSString as? String { return Value.String(v1) }
+        if let v1 = v1 as? NSArray { return try convertArray(v1) }
+        if let v1 = v1 as? NSDictionary { return try convertObject(v1) }
 		throw JSON.Error("Unsupported type. Failed.")
 	}
 	static func convertFromSwift(v1:Value) -> AnyObject {
