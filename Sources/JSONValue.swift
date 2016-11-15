@@ -10,14 +10,14 @@ import Foundation
 
 ///	Explicitly typed representation.
 public enum JSONValue : Equatable {
-    case Object(JSONObject)
-    case Array(JSONArray)
-    case String(Swift.String)
-    case Number(JSONNumber)
-    case Boolean(Bool)
+    case object(JSONObject)
+    case array(JSONArray)
+    case string(String)
+    case number(JSONNumber)
+    case boolean(Bool)
     /// JSON Null is treated as an actual value of type `()`.
-    /// So it's different with `Optional.None`.
-    case Null(())
+    /// So it's different with `Optional.none`.
+    case null(())
 }
 
 public typealias JSONObject = [Swift.String:JSONValue]
@@ -25,71 +25,34 @@ public typealias JSONArray  = [JSONValue]
 
 ///	Arbitrary precision number container.
 public enum JSONNumber : Equatable {
-    case Integer(Int64)
-    case Float(Double)
-    //		case Decimal(NSDecimalNumber)		//	Very large sized decimal number.
-    //		case Arbitrary(expression:String)	//	Arbitrary sized integer/real number expression.
+    case int64(Int64)
+    case float(Double)
+//		case Decimal(NSDecimalNumber)		//	Very large sized decimal number.
+//		case Arbitrary(expression:String)	//	Arbitrary sized integer/real number expression.
 
-    public var integer: Int64? {
+    public var int64: Int64? {
         get {
             switch self {
-            case let .Integer(state):	return	state
-            default:					return	nil
+            case let .int64(state): return state
+            default:                return nil
             }
         }
     }
     public var float: Double? {
         get {
             switch self {
-            case let .Float(state):		return	state
-            default:					return	nil
+            case let .float(state): return state
+            default:                return nil
             }
         }
     }
 }
 
 public extension JSONValue {
-//    public func asObject() throws -> RFC4627.Object {
-//        switch self {
-//        case let Object(state):     return state
-//        default:					throw JSON.Error("This is not a JSON Object. (`\(self)`)")
-//        }
-//    }
-//    public func asArray() throws -> RFC4627.Array {
-//        switch self {
-//        case let Array(state):      return state
-//        default:					throw JSON.Error("This is not a JSON Array. (`\(self)`)")
-//        }
-//    }
-//    public func asString() throws -> Swift.String {
-//        switch self {
-//        case let String(state):     return state
-//        default:					throw JSON.Error("This is not a JSON String. (`\(self)`)")
-//        }
-//    }
-//    public func asNumber() throws -> JSONNumber {
-//        switch self {
-//        case let Number(state):     return state
-//        default:					throw JSON.Error("This is not a JSON Number. (`\(self)`)")
-//        }
-//    }
-//    public func asBoolean() throws -> Bool {
-//        switch self {
-//        case let Boolean(state):    return state
-//        default:					throw JSON.Error("This is not a JSON Boolean. (`\(self)`)")
-//        }
-//    }
-//    public func asNull() throws -> () {
-//        switch self {
-//        case let Null(state):       return state
-//        default:					throw JSON.Error("This is not a JSON Null. (`\(self)`)")
-//        }
-//    }
-
     public var object: JSONObject? {
         get {
             switch self {
-            case let .Object(state):		return	state
+            case let .object(state):    return	state
             default:					return	nil
             }
         }
@@ -97,7 +60,7 @@ public extension JSONValue {
     public var array: [JSONValue]? {
         get {
             switch self {
-            case let .Array(state):		return	state
+            case let .array(state):		return	state
             default:					return	nil
             }
         }
@@ -105,7 +68,7 @@ public extension JSONValue {
     public var string: Swift.String? {
         get {
             switch self {
-            case let .String(state):		return	state
+            case let .string(state):	return	state
             default:					return	nil
             }
         }
@@ -113,7 +76,7 @@ public extension JSONValue {
     public var number: JSONNumber? {
         get {
             switch self {
-            case let .Number(state):		return	state
+            case let .number(state):	return	state
             default:					return	nil
             }
         }
@@ -121,71 +84,64 @@ public extension JSONValue {
     public var boolean: Bool? {
         get {
             switch self {
-            case let .Boolean(state):	return	state
+            case let .boolean(state):	return	state
             default:					return	nil
             }
         }
     }
     /// Checks current value is actually a *JSON Null*.
     /// JSON Null is treated as an actual value of type `()`.
-    /// Don't be confused. `()` for JSON `null`, and 
+    /// Don't be confused. `()` for JSON `null`, and
     /// `nil` for any other type values.
     public var null: ()? {
         get {
             switch self {
-            case .Null: return	()
+            case .null: return	()
             default:	return	nil
             }
         }
     }
 }
 
-
-
-
-
-
-
-
 ///	MARK:
 ///	MARK:	Literals
 ///	MARK:
 extension JSONValue: ExpressibleByNilLiteral, ExpressibleByBooleanLiteral, ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral, ExpressibleByStringLiteral, ExpressibleByExtendedGraphemeClusterLiteral, ExpressibleByUnicodeScalarLiteral, ExpressibleByArrayLiteral, ExpressibleByDictionaryLiteral {
-	public typealias	Key		=	Swift.String
-	public typealias	Value	=	JSONValue
-	public typealias	Element	=	JSONValue
-	
-	public init(nilLiteral: ()) {
-		self = Value.Null(())
-	}
-	public init(booleanLiteral value: BooleanLiteralType) {
-		self = Value.Boolean(value)
-	}
-	public init(integerLiteral value: IntegerLiteralType) {
-		self = Value.Number(JSONNumber.Integer(Int64(value)))
-	}
-	public init(floatLiteral value: FloatLiteralType) {
-		self = Value.Number(JSONNumber.Float(Float64(value)))
-	}
-	public init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterType) {
-		self.init(stringLiteral: value)
-	}
-	public init(stringLiteral value: StringLiteralType) {
-		self = Value.String(value)
-	}
-	public init(unicodeScalarLiteral value: UnicodeScalarType) {
-		self.init(stringLiteral: value)
-	}
-	public init(arrayLiteral elements: Element...) {
-		self = Value.Array(elements)
-	}
-	public init(dictionaryLiteral elements: (Key, Value)...) {
-		var	o1 = [:] as [Key:Value]
-		for (k,v) in elements {
-			o1[k] = v
-		}
-		self = Value.Object(o1)
-	}
+    public typealias Key     = Swift.String
+    public typealias Value	 = JSONValue
+    public typealias Element = JSONValue
+
+    public init(nilLiteral: ()) {
+        self = Value.null(())
+    }
+    public init(booleanLiteral value: BooleanLiteralType) {
+        self = Value.boolean(value)
+    }
+    public init(integerLiteral value: IntegerLiteralType) {
+        self = Value.number(JSONNumber.int64(Int64(value)))
+    }
+    public init(floatLiteral value: FloatLiteralType) {
+        self = Value.number(JSONNumber.float(Float64(value)))
+    }
+    public init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterType) {
+        self.init(stringLiteral: value)
+    }
+    public init(stringLiteral value: StringLiteralType) {
+        self = Value.string(value)
+    }
+    public init(unicodeScalarLiteral value: UnicodeScalarType) {
+        self.init(stringLiteral: value)
+    }
+    public init(arrayLiteral elements: Element...) {
+        self = Value.array(elements)
+    }
+    public init(dictionaryLiteral elements: (Key, Value)...) {
+        var	o1 = [:] as [Key:Value]
+        for (k,v) in elements {
+            o1[k] = v
+        }
+        self = Value.object(o1)
+    }
 }
 
 

@@ -39,8 +39,8 @@ class EonilJSONTests: XCTestCase {
         let	a2	=	a1.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         let	a3	=	try JSON.deserialize(a2)
 
-        let	a4	=	JSONValue.Object([
-            "aaa"	:	JSONValue.Number(JSONNumber.Integer(123))
+        let	a4	=	JSONValue.object([
+            "aaa"	:	JSONValue.number(JSONNumber.int64(123))
             ])
         
         XCTAssert(a3 == a4)

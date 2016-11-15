@@ -73,7 +73,7 @@ private struct Converter {
                 let	m2 = try convertFromOBJC(m1)
                 a2.append(m2)
             }
-            return	Value.Array(a2)
+            return	Value.array(a2)
         }
         func convertObject(_ v1:NSDictionary) throws -> Value {
             var	o2	=	[:] as [String:Value]
@@ -83,24 +83,24 @@ private struct Converter {
                 let v2 = try convertFromOBJC(p2)
                 o2[k1] = v2
             }
-            return	Value.Object(o2)
+            return	Value.object(o2)
         }
 
-        if v1 is NSNull { return Value.Null(()) }
+        if v1 is NSNull { return Value.null(()) }
         if let v2 = v1 as? NSNumber {
             ///	`NSNumber` can be a `CFBoolean` exceptionally if it was created from a boolean value.
             if CFGetTypeID(v2) == CFBooleanGetTypeID() {
                 let	v3	=	CFBooleanGetValue(v2)
-                return	Value.Boolean(v3)
+                return	Value.boolean(v3)
             }
             if CFNumberIsFloatType(v2) {
-                return	Value.Number(JSONNumber.Float(v2.doubleValue))
+                return	Value.number(JSONNumber.float(v2.doubleValue))
             }
             else {
-                return Value.Number(JSONNumber.Integer(v2.int64Value))
+                return Value.number(JSONNumber.int64(v2.int64Value))
             }
         }
-        if let v1 = v1 as? NSString as? String { return Value.String(v1) }
+        if let v1 = v1 as? NSString as? String { return Value.string(v1) }
         if let v1 = v1 as? NSArray { return try convertArray(v1) }
         if let v1 = v1 as? NSDictionary { return try convertObject(v1) }
         throw JSONError("Unsupported type. Failed.")
@@ -125,16 +125,16 @@ private struct Converter {
         }
 
         switch v1 {
-        case Value.Null():                          return NSNull()
-        case Value.Boolean(let boolValue):          return NSNumber(value: boolValue as Bool)
-        case Value.Number(let numberValue):
+        case Value.null():                          return NSNull()
+        case Value.boolean(let boolValue):          return NSNumber(value: boolValue as Bool)
+        case Value.number(let numberValue):
             switch numberValue {
-            case JSONNumber.Integer(let integerValue): return NSNumber(value: integerValue as Int64)
-            case JSONNumber.Float(let floatValue):     return NSNumber(value: floatValue as Double)
+            case JSONNumber.int64(let int64Value):  return NSNumber(value: int64Value as Int64)
+            case JSONNumber.float(let floatValue):  return NSNumber(value: floatValue as Double)
             }
-        case Value.String(let stringValue):         return stringValue as NSString
-        case Value.Array(let arrayValue):           return convertArray(arrayValue)
-        case Value.Object(let objectValue):         return convertObject(objectValue)
+        case Value.string(let stringValue):         return stringValue as NSString
+        case Value.array(let arrayValue):           return convertArray(arrayValue)
+        case Value.object(let objectValue):         return convertObject(objectValue)
         }
     }
 }
