@@ -10,7 +10,7 @@ import Foundation
 
 ///	Container namespace of `RFC4627` JSON implementation.
 ///
-/// Start with `JSON.Value`.
+/// Start with `JSONValue`.
 ///
 public struct JSON {
 }

@@ -6,8 +6,8 @@
 //
 //
 
-public func == (l:JSON.Value, r:JSON.Value) -> Bool {
-	typealias Value = JSON.Value
+public func == (l:JSONValue, r:JSONValue) -> Bool {
+	typealias Value = JSONValue
 	switch (l,r) {
 	case let (.Null(l2),    .Null(r2)):     return	l2 == r2
 	case let (.Boolean(l2),	.Boolean(r2)):	return	l2 == r2
@@ -18,33 +18,33 @@ public func == (l:JSON.Value, r:JSON.Value) -> Bool {
 	default:								return	false
 	}
 }
-public func == (l:JSON.Number, r:JSON.Number) -> Bool {
-	typealias	Value	=	JSON.Number
+public func == (l:JSONNumber, r:JSONNumber) -> Bool {
+	typealias	Value	=	JSONNumber
 	switch (l,r) {
 	case let (.Integer(l2), .Integer(r2)):	return	l2 == r2
 	case let (.Float(l2),	.Float(r2)):	return	l2 == r2
 	default:								return	false
 	}
 }
-public func == (l:JSON.Value, r:()) -> Bool {
+public func == (l:JSONValue, r:()) -> Bool {
 	return l.null == r
 }
-public func == (l:JSON.Value, r:Bool) -> Bool {
+public func == (l:JSONValue, r:Bool) -> Bool {
 	return l.boolean == r
 }
-public func == (l:JSON.Value, r:Int64) -> Bool {
+public func == (l:JSONValue, r:Int64) -> Bool {
 	if let v1 = l.number?.integer {
 		return v1 == r
 	}
 	return false
 }
-public func == (l:JSON.Value, r:Float64) -> Bool {
+public func == (l:JSONValue, r:Float64) -> Bool {
 	if let v1 = l.number?.float {
 		return v1 == r
 	}
 	return false
 }
-public func == (l:JSON.Value, r:String) -> Bool {
+public func == (l:JSONValue, r:String) -> Bool {
 	return l.string == r
 }
 
@@ -57,9 +57,9 @@ private func == (a: ()?, b: ()?) -> Bool {
     return a.isNone() == b.isNone()
 }
 private extension Optional {
-    private func isNone() -> Bool {
+    func isNone() -> Bool {
         switch self {
-        case .None: return true
+        case .none: return true
         default:    return false
         }
     }

@@ -36,18 +36,18 @@ class EonilJSONTests: XCTestCase {
 
     func test1() throws {
         let	a1	=	"{ \"aaa\" : 123 }"
-        let	a2	=	a1.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+        let	a2	=	a1.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         let	a3	=	try JSON.deserialize(a2)
 
-        let	a4	=	JSON.Value.Object([
-            "aaa"	:	JSON.Value.Number(JSON.Number.Integer(123))
+        let	a4	=	JSONValue.Object([
+            "aaa"	:	JSONValue.Number(JSONNumber.Integer(123))
             ])
         
         XCTAssert(a3 == a4)
     }
 
     func test2() throws {
-        let	d1	=	"This is a dynamic text." as JSON.Value
+        let	d1	=	"This is a dynamic text." as JSONValue
         let	a1	=	[
             "aaa"	:	nil,
             "bbb"	:	true,
@@ -60,7 +60,7 @@ class EonilJSONTests: XCTestCase {
                 "f2"	:	d1,
                 "f3"	:	d1,
             ],
-            ] as JSON.Value
+            ] as JSONValue
 
 
         let	a2 = try JSON.serialize(a1)

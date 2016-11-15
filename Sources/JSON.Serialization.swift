@@ -10,23 +10,23 @@ import Foundation.NSData
 import Foundation.NSJSONSerialization
 
 public extension JSON {
-    public static func deserialize(data:NSData) throws -> JSON.Value {
-        let	o1 = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-        guard let o2 = o1 as? NSObject else { throw JSON.Error("Internal `NSJSONSerialization.JSONObjectWithData` returned non-`NSObject` object. Unacceptable. \(o1)") }
+    public static func deserialize(_ data:Data) throws -> JSONValue {
+        let	o1 = try JSONSerialization.jsonObject(with: data, options: [])
+        guard let o2 = o1 as? NSObject else { throw JSONError("Internal `NSJSONSerialization.JSONObjectWithData` returned non-`NSObject` object. Unacceptable. \(o1)") }
         let	o3 = try Converter.convertFromOBJC(o2)
         return o3
     }
 
-    public static func serialize(value:JSON.Value) throws -> NSData {
+    public static func serialize(_ value:JSONValue) throws -> Data {
         return try serialize(value, allowFragment: false)
     }
     ///	This does not allow serialisation of fragment. A JSON value must be one
     ///	of object or array type. This limitation is due to limitation of `NSJSONSerialization` class.
-    static func serialize(value:JSON.Value, allowFragment:Bool) throws -> NSData {
+    static func serialize(_ value:JSONValue, allowFragment:Bool) throws -> Data {
         assert(value.object != nil || value.array != nil)
         let	o2:AnyObject	=	Converter.convertFromSwift(value)
         //		let	d3:NSData?		=	NSJSONSerialization.dataWithJSONObject(o2, options: (NSJSONWritingOptions.allZeros) | NSJSONWritingOptions.PrettyPrinted), error: &e1)
-        let	d3:NSData		=	try NSJSONSerialization.dataWithJSONObject(o2, options: [.PrettyPrinted])
+        let	d3:Data		=	try JSONSerialization.data(withJSONObject: o2, options: [.prettyPrinted])
         return d3
     }
 }
@@ -54,7 +54,7 @@ public extension JSON {
 
 ///	Converts JSON tree between Objective-C and Swift representations.
 private struct Converter {
-    typealias Value = JSON.Value
+    typealias Value = JSONValue
 
     /// Gets strongly typed JSON tree.
     ///
@@ -64,22 +64,22 @@ private struct Converter {
     ///	Objective-C `nil` is not supported as an input.
     ///	Use `NSNull` which is standard way to represent `nil`
     ///	in data-structures in Cocoa.
-    static func convertFromOBJC(v1: NSObject) throws -> Value {
-        func convertArray(v1:NSArray) throws -> Value {
+    static func convertFromOBJC(_ v1: NSObject) throws -> Value {
+        func convertArray(_ v1:NSArray) throws -> Value {
             var	a2 = [] as [Value]
             for m1 in v1 {
                 ///	Must be an OBJC type.
-                guard let m1 = m1 as? NSObject else { throw JSON.Error("Non-OBJC type object (that is not convertible) discovered.") }
+                guard let m1 = m1 as? NSObject else { throw JSONError("Non-OBJC type object (that is not convertible) discovered.") }
                 let	m2 = try convertFromOBJC(m1)
                 a2.append(m2)
             }
             return	Value.Array(a2)
         }
-        func convertObject(v1:NSDictionary) throws -> Value {
+        func convertObject(_ v1:NSDictionary) throws -> Value {
             var	o2	=	[:] as [String:Value]
             for p1 in v1 {
-                guard let k1 = p1.key as? NSString as? String else { throw JSON.Error("") }
-                guard let p2 = p1.value as? NSObject else { throw JSON.Error("") }
+                guard let k1 = p1.key as? NSString as? String else { throw JSONError("") }
+                guard let p2 = p1.value as? NSObject else { throw JSONError("") }
                 let v2 = try convertFromOBJC(p2)
                 o2[k1] = v2
             }
@@ -94,27 +94,27 @@ private struct Converter {
                 return	Value.Boolean(v3)
             }
             if CFNumberIsFloatType(v2) {
-                return	Value.Number(JSON.Number.Float(v2.doubleValue))
+                return	Value.Number(JSONNumber.Float(v2.doubleValue))
             }
             else {
-                return Value.Number(JSON.Number.Integer(v2.longLongValue))
+                return Value.Number(JSONNumber.Integer(v2.int64Value))
             }
         }
         if let v1 = v1 as? NSString as? String { return Value.String(v1) }
         if let v1 = v1 as? NSArray { return try convertArray(v1) }
         if let v1 = v1 as? NSDictionary { return try convertObject(v1) }
-        throw JSON.Error("Unsupported type. Failed.")
+        throw JSONError("Unsupported type. Failed.")
     }
-    static func convertFromSwift(v1: Value) -> NSObject {
-        func convertArray(a1: [Value]) -> NSArray {
+    static func convertFromSwift(_ v1: Value) -> NSObject {
+        func convertArray(_ a1: [Value]) -> NSArray {
             let	a2 = NSMutableArray()
             for m1 in a1 {
                 let	m2 = convertFromSwift(m1)
-                a2.addObject(m2)
+                a2.add(m2)
             }
             return	a2
         }
-        func convertObject(o1:[String:Value]) -> NSDictionary {
+        func convertObject(_ o1:[String:Value]) -> NSDictionary {
             let	o2	=	NSMutableDictionary()
             for (k1, v1) in o1 {
                 let	k2 = k1 as NSString
@@ -126,11 +126,11 @@ private struct Converter {
 
         switch v1 {
         case Value.Null():                          return NSNull()
-        case Value.Boolean(let boolValue):          return NSNumber(bool: boolValue)
+        case Value.Boolean(let boolValue):          return NSNumber(value: boolValue as Bool)
         case Value.Number(let numberValue):
             switch numberValue {
-            case JSON.Number.Integer(let integerValue): return NSNumber(longLong: integerValue)
-            case JSON.Number.Float(let floatValue):     return NSNumber(double: floatValue)
+            case JSONNumber.Integer(let integerValue): return NSNumber(value: integerValue as Int64)
+            case JSONNumber.Float(let floatValue):     return NSNumber(value: floatValue as Double)
             }
         case Value.String(let stringValue):         return stringValue as NSString
         case Value.Array(let arrayValue):           return convertArray(arrayValue)
