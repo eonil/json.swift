@@ -12,7 +12,6 @@
 		451C94661D044AD200C5F640 /* JSON.Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94611D044AD200C5F640 /* JSON.Operators.swift */; };
 		451C94671D044AD200C5F640 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94621D044AD200C5F640 /* JSONValue.swift */; };
 		451C94681D044AD200C5F640 /* Unused.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94631D044AD200C5F640 /* Unused.swift */; };
-		451C94701D0451D800C5F640 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C946F1D0451D800C5F640 /* Tests.swift */; };
 		451C94721D0451D800C5F640 /* EonilJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451C94541D044ABD00C5F640 /* EonilJSON.framework */; };
 		451C94871D04584E00C5F640 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C945F1D044AD200C5F640 /* JSON.swift */; };
 		451C94881D04584E00C5F640 /* JSONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94601D044AD200C5F640 /* JSONError.swift */; };
@@ -20,9 +19,10 @@
 		451C948A1D04584E00C5F640 /* JSON.Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94611D044AD200C5F640 /* JSON.Operators.swift */; };
 		451C948B1D04584E00C5F640 /* Unused.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94631D044AD200C5F640 /* Unused.swift */; };
 		451C94951D04595400C5F640 /* EonilJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451C947F1D0457F300C5F640 /* EonilJSON.framework */; };
-		451C949B1D0459AD00C5F640 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C946F1D0451D800C5F640 /* Tests.swift */; };
 		451C94B51D04660000C5F640 /* JSON.Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94B41D04660000C5F640 /* JSON.Serialization.swift */; };
 		451C94B61D04662500C5F640 /* JSON.Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94B41D04660000C5F640 /* JSON.Serialization.swift */; };
+		4565F64C1DDF3EAD00D3AEAF /* TestAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565F64B1DDF3EAD00D3AEAF /* TestAll.swift */; };
+		4565F64D1DDF3EAD00D3AEAF /* TestAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565F64B1DDF3EAD00D3AEAF /* TestAll.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,12 +51,12 @@
 		451C94621D044AD200C5F640 /* JSONValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
 		451C94631D044AD200C5F640 /* Unused.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unused.swift; sourceTree = "<group>"; };
 		451C946D1D0451D800C5F640 /* EonilJSON-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EonilJSON-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		451C946F1D0451D800C5F640 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		451C94711D0451D800C5F640 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		451C94781D04555200C5F640 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		451C947F1D0457F300C5F640 /* EonilJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EonilJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		451C94901D04595400C5F640 /* EonilJSON-OSX-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EonilJSON-OSX-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		451C94B41D04660000C5F640 /* JSON.Serialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.Serialization.swift; sourceTree = "<group>"; };
+		4565F64B1DDF3EAD00D3AEAF /* TestAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAll.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,10 +131,18 @@
 		451C946E1D0451D800C5F640 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				451C946F1D0451D800C5F640 /* Tests.swift */,
+				4565F64A1DDF3EAD00D3AEAF /* AllTests */,
 				451C94711D0451D800C5F640 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		4565F64A1DDF3EAD00D3AEAF /* AllTests */ = {
+			isa = PBXGroup;
+			children = (
+				4565F64B1DDF3EAD00D3AEAF /* TestAll.swift */,
+			);
+			path = AllTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,7 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				451C94701D0451D800C5F640 /* Tests.swift in Sources */,
+				4565F64C1DDF3EAD00D3AEAF /* TestAll.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				451C949B1D0459AD00C5F640 /* Tests.swift in Sources */,
+				4565F64D1DDF3EAD00D3AEAF /* TestAll.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
