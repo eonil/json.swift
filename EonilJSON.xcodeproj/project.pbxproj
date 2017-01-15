@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4517CF801E2B968800C43464 /* EonilJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 4517CF7F1E2B968800C43464 /* EonilJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4517CF811E2B968800C43464 /* EonilJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 4517CF7F1E2B968800C43464 /* EonilJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		451C94641D044AD200C5F640 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C945F1D044AD200C5F640 /* JSON.swift */; };
 		451C94651D044AD200C5F640 /* JSONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94601D044AD200C5F640 /* JSONError.swift */; };
 		451C94661D044AD200C5F640 /* JSON.Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94611D044AD200C5F640 /* JSON.Operators.swift */; };
@@ -43,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4517CF7F1E2B968800C43464 /* EonilJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EonilJSON.h; sourceTree = "<group>"; };
 		451C94541D044ABD00C5F640 /* EonilJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EonilJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		451C94591D044ABD00C5F640 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		451C945F1D044AD200C5F640 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
@@ -118,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				451C94591D044ABD00C5F640 /* Info.plist */,
+				4517CF7F1E2B968800C43464 /* EonilJSON.h */,
 				451C945F1D044AD200C5F640 /* JSON.swift */,
 				451C94B41D04660000C5F640 /* JSON.Serialization.swift */,
 				451C94601D044AD200C5F640 /* JSONError.swift */,
@@ -152,6 +156,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4517CF801E2B968800C43464 /* EonilJSON.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +164,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4517CF811E2B968800C43464 /* EonilJSON.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +426,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -466,6 +473,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -488,7 +496,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -506,7 +513,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};
@@ -548,7 +554,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -568,7 +573,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};
