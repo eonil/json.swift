@@ -1,9 +1,5 @@
 language: swift
+os: osx
+osx_image: xcode8.2
+script: Tools/test.bash
 
-matrix:
-  include:
-    - os: osx
-      osx_image: xcode8.1
-
-script:
-  - Tools/ci.bash
