@@ -34,6 +34,7 @@ class EonilJSONTests: XCTestCase {
 //    }
 
 
+    /*
     func test1() throws {
         let	a1	=	"{ \"aaa\" : 123 }"
         let	a2	=	a1.data(using: String.Encoding.utf8, allowLossyConversion: false)!
@@ -76,6 +77,7 @@ class EonilJSONTests: XCTestCase {
         XCTAssert(a3.object!["aaa"]! == nil)
         XCTAssert(a3.object!["fff"]! == [d1, d1, d1])
     }
+     */
 }
 
 
