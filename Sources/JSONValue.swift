@@ -1,6 +1,6 @@
 //
 //  JSONValue.swift
-//  Monolith
+//  EoniJSON
 //
 //  Created by Hoon H. on 10/20/14.
 //
@@ -8,107 +8,92 @@
 
 import Foundation
 
-///	Explicitly typed representation.
-public enum JSONValue : Equatable {
+public enum JSONValue: Equatable {
     case object(JSONObject)
     case array(JSONArray)
-    case string(String)
+    case string(JSONString)
     case number(JSONNumber)
-    case boolean(Bool)
-    /// JSON Null is treated as an actual value of type `()`.
+    case boolean(JSONBoolean)
+    ///
+    /// Represents `null` in JSON.
+    ///
+    /// JSON Null is treated as an actual value of type `Void`.
     /// So it's different with `Optional.none`.
-    case null(())
+    ///
+    case null(JSONNull)
 }
 
-public typealias JSONObject = [Swift.String:JSONValue]
-public typealias JSONArray  = [JSONValue]
+public typealias JSONObject     =   [JSONString: JSONValue]
+public typealias JSONArray      =   [JSONValue]
+public typealias JSONString     =   String
+public typealias JSONBoolean    =   Bool
+public typealias JSONNull       =   Void
 
-///	Arbitrary precision number container.
-public enum JSONNumber : Equatable {
+///
+/// Represents a JSON number.
+///
+/// There's no clearly typed non-OBJC numeric type for JSON Numbers.
+///
+public enum JSONNumber: Equatable {
     case int64(Int64)
-    case float(Double)
-//		case Decimal(NSDecimalNumber)		//	Very large sized decimal number.
-//		case Arbitrary(expression:String)	//	Arbitrary sized integer/real number expression.
+    case float64(Float64)
+//  case Arbitrary(expression:String) // Arbitrary sized integer/real number expression.
 
     public var int64: Int64? {
-        get {
-            switch self {
-            case let .int64(state): return state
-            default:                return nil
-            }
-        }
+        if case let .int64(v) = self { return v }
+        return nil
     }
-    public var float: Double? {
-        get {
-            switch self {
-            case let .float(state): return state
-            default:                return nil
-            }
-        }
+    public var float64: Float64? {
+        if case let .float64(v) = self { return v }
+        return nil
     }
 }
 
 public extension JSONValue {
     public var object: JSONObject? {
-        get {
-            switch self {
-            case let .object(state):    return	state
-            default:					return	nil
-            }
-        }
+        if case let .object(v) = self { return v }
+        return nil
     }
-    public var array: [JSONValue]? {
-        get {
-            switch self {
-            case let .array(state):		return	state
-            default:					return	nil
-            }
-        }
+    public var array: JSONArray? {
+        if case let .array(v) = self { return v }
+        return nil
     }
-    public var string: Swift.String? {
-        get {
-            switch self {
-            case let .string(state):	return	state
-            default:					return	nil
-            }
-        }
+    public var string: JSONString? {
+        if case let .string(v) = self { return v }
+        return nil
     }
     public var number: JSONNumber? {
-        get {
-            switch self {
-            case let .number(state):	return	state
-            default:					return	nil
-            }
-        }
+        if case let .number(v) = self { return v }
+        return nil
     }
-    public var boolean: Bool? {
-        get {
-            switch self {
-            case let .boolean(state):	return	state
-            default:					return	nil
-            }
-        }
+    public var boolean: JSONBoolean? {
+        if case let .boolean(v) = self { return v }
+        return nil
     }
     /// Checks current value is actually a *JSON Null*.
-    /// JSON Null is treated as an actual value of type `()`.
-    /// Don't be confused. `()` for JSON `null`, and
+    /// JSON Null is treated as an actual value of type `Void`.
+    /// Don't be confused. `Void()` for JSON `null`, and
     /// `nil` for any other type values.
-    public var null: ()? {
+    public var null: Void? {
         get {
             switch self {
-            case .null: return	()
-            default:	return	nil
+            case .null: return Void()
+            default:    return nil
             }
         }
     }
 }
 
-///	MARK:
-///	MARK:	Literals
-///	MARK:
+
+
+/*
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: -
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 extension JSONValue: ExpressibleByNilLiteral, ExpressibleByBooleanLiteral, ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral, ExpressibleByStringLiteral, ExpressibleByExtendedGraphemeClusterLiteral, ExpressibleByUnicodeScalarLiteral, ExpressibleByArrayLiteral, ExpressibleByDictionaryLiteral {
-    public typealias Key     = Swift.String
-    public typealias Value	 = JSONValue
+    public typealias Key     = JSONString
+    public typealias Value   = JSONValue
     public typealias Element = JSONValue
 
     public init(nilLiteral: ()) {
@@ -121,7 +106,7 @@ extension JSONValue: ExpressibleByNilLiteral, ExpressibleByBooleanLiteral, Expre
         self = Value.number(JSONNumber.int64(Int64(value)))
     }
     public init(floatLiteral value: FloatLiteralType) {
-        self = Value.number(JSONNumber.float(Float64(value)))
+        self = Value.number(JSONNumber.float64(Float64(value)))
     }
     public init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterType) {
         self.init(stringLiteral: value)
@@ -136,7 +121,7 @@ extension JSONValue: ExpressibleByNilLiteral, ExpressibleByBooleanLiteral, Expre
         self = Value.array(elements)
     }
     public init(dictionaryLiteral elements: (Key, Value)...) {
-        var	o1 = [:] as [Key:Value]
+        var o1 = [:] as [Key:Value]
         for (k,v) in elements {
             o1[k] = v
         }
@@ -144,177 +129,4 @@ extension JSONValue: ExpressibleByNilLiteral, ExpressibleByBooleanLiteral, Expre
     }
 }
 
-
-
-
-
-
-
-
-//
-/////	MARK:
-/////	MARK:	Collecion Support
-/////	MARK:
-//
-/////	`JSONValue` is treated as an array when you enumerate on it.
-/////	If underlying value is not an array, it will cause program crash.
-/////
-//extension RFC4627.Value : CollectionType {
-//	public var startIndex:Int {
-//		get {
-//			precondition(array != nil)
-//			return	array!.startIndex
-//		}
-//	}
-//	public var endIndex:Int {
-//		get {
-//			precondition(array != nil)
-//			return	array!.endIndex
-//		}
-//	}
-//	public subscript(name:Swift.String) -> Value? {
-//		get {
-//			return	object?[name]
-//		}
-//	}
-//	public subscript(index:Int) -> Value {
-//		get {
-//			return	array![index]
-//		}
-//	}
-//	public func generate() -> IndexingGenerator<[Value]> {
-//		precondition(array != nil, "Current `Value` does not contain an array.")
-//		return	array!.generate()
-//	}
-//}
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
