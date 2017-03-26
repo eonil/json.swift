@@ -52,11 +52,16 @@ Quickstart
         // `v` is a `Bool`.
         break
     case .number(let v):
+        // `v` is an `Int64` if
+        // the number is parsed
+        // as an integer.
+        // Otherwise it is a 
+        // `Float64`.
         if let v1 = v.int64 {
-            // `v` is a `Int64`.
+            // `v1` is a `Int64`.
         }
         if let v1 = v.float64 {
-            // `v` is a `Float64`.
+            // `v1` is a `Float64`.
         }
         break
     case .string(let v):
