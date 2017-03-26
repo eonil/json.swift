@@ -4,26 +4,37 @@ Hoon H.
 
 [![Build Status](https://travis-ci.org/eonil/json.swift.svg?branch=master)](https://travis-ci.org/eonil/json.swift)
 
-In-memory data representation for `RFC4627`.
+In-memory representation for `RFC7159`.
+This tries to resemble JSON AST which follows JavaScript 
+semantics closely as much as possible.
 
-- Very strongly and explicitly typed.
+- OBJC runtime free (in-memory representation only)
+    - No vague `NSObject`, `NSArray`, `NSDictionary` and
+        `NSNumber`. (serialization still uses 
+        `JSONSerialization` internally)
     - Defines `JSONNumber` which is composition 
         of `Int64` and `Float64` types.
-    - Treats "JSON Null" as a value, and mapped
+    - Treats "null" as a value, and mapped
         to `Void` type.
-- Explicit. 
+
+- Safer.
+    - Checks and declines for unacceptable values like
+        `nan` or `infinity` at first place.
+    - Once you created a JSON tree, That's a valid JSON.
+    
+- More explicit. 
     - No implicit conversion at all. 
     - No literal supports at all.
-    - No extras.
-    - You MUST do everything explicitly.
     - If your JSON value is `null`, it becomes `Void()`
         value.
-- Minimal feature set. Only one additional feature
-    -- `JSONSerialization` support.
-- In-memory types are OBJC runtime accesss free. 
-    (though serialization still uses `JSONSerialization`)
-- Small. Release build binary size can be down to around
-    130KiB in optimal condition. (can be larger by conditions)
+
+- Smaller.
+    - Minimal feature set. No extras.
+    - Small. Release build binary size can be down to around
+        150KiB in optimal condition. (can be larger by conditions)
+
+Take care that this is not CST. This is an AST intended to be
+used as a part of static serialization code.
 
 Quickstart
 ----------
@@ -41,13 +52,11 @@ Quickstart
         // `v` is a `Bool`.
         break
     case .number(let v):
-        switch v {
-        case .int64(let v):
+        if let v1 = v.int64 {
             // `v` is a `Int64`.
-            break
-        case .float64(let v):
+        }
+        if let v1 = v.float64 {
             // `v` is a `Float64`.
-            break
         }
         break
     case .string(let v):
