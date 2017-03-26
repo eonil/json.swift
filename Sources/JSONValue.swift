@@ -8,6 +8,25 @@
 
 import Foundation
 
+///
+/// Represents a JSON AST.
+///
+/// For now, I am reconstructing AST from parsed output
+/// of `JSONSerialization`.
+///
+/// - Note:
+///     RFC7159 defines only about forms, and nothing
+///     about their semantics.
+///     Abstraction conforms JavaScript primitive semantics
+///     closely as much as possible. Concept of boolean-type
+///     is created in AST level to follow JavaScript primitive
+///     semantics. At CST level, there're only `false` and 
+///     `true` literals,
+///     and no concept of boolean-type.
+///
+/// - SeeAlso: https://tools.ietf.org/html/rfc7159
+/// - SeeAlso: https://developer.mozilla.org/en-US/docs/Glossary/Primitive
+///
 public enum JSONValue: Equatable {
     case object(JSONObject)
     case array(JSONArray)
@@ -20,32 +39,79 @@ public enum JSONValue: Equatable {
     /// JSON Null is treated as an actual value of type `Void`.
     /// So it's different with `Optional.none`.
     ///
+    /// Treating this as `Void()` make logics more clear.
+    /// See `JSONValue.null` computed property.
+    ///
     case null(JSONNull)
 }
 
 public typealias JSONObject     =   [JSONString: JSONValue]
 public typealias JSONArray      =   [JSONValue]
 public typealias JSONString     =   String
+///
+/// Invented concept of boolean-type in AST level.
+///
 public typealias JSONBoolean    =   Bool
 public typealias JSONNull       =   Void
 
 ///
 /// Represents a JSON number.
 ///
-/// There's no clearly typed non-OBJC numeric type for JSON Numbers.
+/// There's nothing like JSON Number in Swift.
+/// `NSNumber` is very close, but it is OBJC, 
+/// and I don't want extra dependency to OBJC.
+/// `Decimal` is very close, but it's very
+/// inefficient.
 ///
-public enum JSONNumber: Equatable {
-    case int64(Int64)
-    case float64(Float64)
-//  case Arbitrary(expression:String) // Arbitrary sized integer/real number expression.
+/// Also, this MUST be an opaque type because
+/// JSON Number DOES NOT support irregular 
+/// `Float64` state like `nan`. This type 
+/// contains only valid state for JSON Value
+/// by limiting acceptable state range.
+///
+/// JSON Number in RFC7159 is an unlimited,
+/// arbitrary-length decimal, but this 
+/// implementation support only up to IEEE-754 
+/// double precision level numbers because this
+/// follows JavaScript semantics.
+///
+/// - SeeAlso: https://tools.ietf.org/html/rfc7159#section-6
+///
+public struct JSONNumber: Equatable {
+    internal let storage: Storage
+    internal enum Storage {
+        case int64(Int64)
+        case float64(Float64)
+//      case decimal(Decimal)
+//      case Arbitrary(expression:String) // Arbitrary sized integer/real number expression.
 
+        var int64: Int64? {
+            if case let .int64(v) = self { return v }
+            return nil
+        }
+        var float64: Float64? {
+            if case let .float64(v) = self { return v }
+            return nil
+        }
+    }
+
+    public init(_ v: Int64) {
+        storage = .int64(v)
+    }
+    ///
+    /// Only values that are convertible into
+    /// JSON Number accepted. Otherwise, this
+    /// throws an error.
+    ///
+    public init(_ v: Float64) throws {
+        guard v.isZero || v.isNormal else { throw JSONError("Value `\(v)` is not a zero or normal number and unacceptable.") }
+        storage = .float64(v)
+    }
     public var int64: Int64? {
-        if case let .int64(v) = self { return v }
-        return nil
+        return storage.int64
     }
     public var float64: Float64? {
-        if case let .float64(v) = self { return v }
-        return nil
+        return storage.float64
     }
 }
 
@@ -70,17 +136,17 @@ public extension JSONValue {
         if case let .boolean(v) = self { return v }
         return nil
     }
+    ///
     /// Checks current value is actually a *JSON Null*.
-    /// JSON Null is treated as an actual value of type `Void`.
-    /// Don't be confused. `Void()` for JSON `null`, and
-    /// `nil` for any other type values.
+    /// JSON Null is treated as an actual instance of type `Void`.
+    /// 
+    /// - Returns:
+    ///     `Void()` for JSON `null`.
+    ///     `nil` for any other type values.
+    ///
     public var null: Void? {
-        get {
-            switch self {
-            case .null: return Void()
-            default:    return nil
-            }
-        }
+        if case let .null(v) = self { return v }
+        return nil
     }
 }
 

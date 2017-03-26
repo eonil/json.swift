@@ -15,13 +15,13 @@ public struct JSON {
         let o3 = try Converter.convertFromOBJC(o2)
         return o3
     }
+    ///
+    /// Encoding a JSON data does not support encoding of JSON fragment.
+    /// Input JSON value must be one of `JSONArray` or `JSONObject`.
+    /// This is due to limitation of `JSONSerialization` class.
+    ///
     public static func serialize(_ value: JSONValue) throws -> Data {
-        return try serialize(value, allowFragment: false)
-    }
-    /// This does not allow serialisation of fragment. A JSON value must be one
-    /// of object or array type. This limitation is due to limitation of `NSJSONSerialization` class.
-    static func serialize(_ value: JSONValue, allowFragment: Bool) throws -> Data {
-        assert(value.object != nil || value.array != nil)
+        guard value.object != nil || value.array != nil else { throw JSONError("For now, encoding of JSON fragment is not supported.") }
         let o2:AnyObject = Converter.convertFromSwift(value)
         let d3:Data = try JSONSerialization.data(withJSONObject: o2, options: [.prettyPrinted])
         return  d3
@@ -74,10 +74,10 @@ private struct Converter {
                 return Value.boolean(v3)
             }
             if CFNumberIsFloatType(v2) {
-                return Value.number(JSONNumber.float64(v2.doubleValue))
+                return Value.number(try JSONNumber(v2.doubleValue))
             }
             else {
-                return Value.number(JSONNumber.int64(v2.int64Value))
+                return Value.number(JSONNumber(v2.int64Value))
             }
         }
         if let v1 = v1 as? NSString as? String { return Value.string(v1) }
@@ -108,9 +108,9 @@ private struct Converter {
         case Value.null():                              return NSNull()
         case Value.boolean(let boolValue):              return NSNumber(value: boolValue as Bool)
         case Value.number(let numberValue):
-            switch numberValue {
-            case JSONNumber.int64(let int64Value):      return NSNumber(value: int64Value as Int64)
-            case JSONNumber.float64(let floatValue):    return NSNumber(value: floatValue as Double)
+            switch numberValue.storage {
+            case JSONNumber.Storage.int64(let int64Value):      return NSNumber(value: int64Value as Int64)
+            case JSONNumber.Storage.float64(let floatValue):    return NSNumber(value: floatValue as Double)
             }
         case Value.string(let stringValue):             return stringValue as NSString
         case Value.array(let arrayValue):               return convertArray(arrayValue)

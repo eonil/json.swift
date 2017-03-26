@@ -20,7 +20,50 @@ class EonilJSONTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
+//    func testJSONSerializerFragmentSupport() throws {
+//        let a = "AAA"
+//        let b = try JSONSerialization.data(withJSONObject: a, options: .prettyPrinted)
+//        let c = try JSONSerialization.jsonObject(with: b, options: .allowFragments)
+//        XCTAssertTrue(c is NSString)
+//        let c1 = c as? NSString as? String
+//        XCTAssertNotNil(c1)
+//        XCTAssertEqual(a, c1!)
+//    }
+    func testGoodNumberValue1() {
+        let a = Float64(11.11)
+        do {
+            let b = try JSONNumber(a)
+            XCTAssertNotNil(b.float64)
+            XCTAssertEqual(a, b.float64)
+        }
+        catch let e {
+            XCTFail("\(e)")
+        }
+    }
+    func testBadNumberValue1() {
+        let a = Float64.nan
+        XCTAssertThrowsError(try JSONNumber(a))
+    }
+    func testBadNumberValue2() {
+        let a = -Float64.nan
+        XCTAssertThrowsError(try JSONNumber(a))
+    }
+    func testBadNumberValue3() {
+        let a = Float64.infinity
+        XCTAssertThrowsError(try JSONNumber(a))
+    }
+    func testBadNumberValue4() {
+        let a = -Float64.infinity
+        XCTAssertThrowsError(try JSONNumber(a))
+    }
+    func testBadNumberValue5() {
+        let a = Float64(bitPattern: UInt64(0x0000000000000001))
+        let b = Float64(bitPattern: UInt64(0x000fffffffffffff))
+        XCTAssertThrowsError(try JSONNumber(a))
+        XCTAssertThrowsError(try JSONNumber(b))
+    }
+
 //    func testExample() {
 //        // This is an example of a functional test case.
 //        // Use XCTAssert and related functions to verify your tests produce the correct results.

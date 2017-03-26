@@ -9,20 +9,20 @@
 public func == (a: JSONValue, b: JSONValue) -> Bool {
     typealias Value = JSONValue
     switch (a, b) {
-    case let (.null(l2),    .null(r2)):     return l2 == r2
-    case let (.boolean(l2), .boolean(r2)):  return l2 == r2
-    case let (.number(l2),  .number(r2)):   return l2 == r2
-    case let (.string(l2),  .string(r2)):   return l2 == r2
-    case let (.array(l2),   .array(r2)):    return l2 == r2
-    case let (.object(l2),  .object(r2)):   return l2 == r2
+    case let (.null(a1),    .null(b1)):     return a1 == b1
+    case let (.boolean(a1), .boolean(b1)):  return a1 == b1
+    case let (.number(a1),  .number(b1)):   return a1 == b1
+    case let (.string(a1),  .string(b1)):   return a1 == b1
+    case let (.array(a1),   .array(b1)):    return a1 == b1
+    case let (.object(a1),  .object(b1)):   return a1 == b1
     default:                                return false
     }
 }
 public func == (a: JSONNumber, b: JSONNumber) -> Bool {
     typealias Value = JSONNumber
-    switch (a, b) {
-    case let (.int64(l2),   .int64(r2)):    return l2 == r2
-    case let (.float64(l2), .float64(r2)):  return l2 == r2
+    switch (a.storage, b.storage) {
+    case let (.int64(a1),   .int64(b1)):    return a1 == b1
+    case let (.float64(a1), .float64(b1)):  return a1 == b1
     default:                                return false
     }
 }
