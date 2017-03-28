@@ -58,7 +58,7 @@ private struct Converter {
         func convertObject(_ v1: NSDictionary) throws -> Value {
             var o2 = [:] as [String:Value]
             for p1 in v1 {
-                guard let k1 = p1.key as? NSString as? String else { throw JSONError("") }
+                guard let k1 = p1.key as? NSString as String? else { throw JSONError("") }
                 guard let p2 = p1.value as? NSObject else { throw JSONError("") }
                 let v2 = try convertFromOBJC(p2)
                 o2[k1] = v2
@@ -80,7 +80,7 @@ private struct Converter {
                 return Value.number(JSONNumber(v2.int64Value))
             }
         }
-        if let v1 = v1 as? NSString as? String { return Value.string(v1) }
+        if let v1 = v1 as? NSString as String? { return Value.string(v1) }
         if let v1 = v1 as? NSArray { return try convertArray(v1) }
         if let v1 = v1 as? NSDictionary { return try convertObject(v1) }
         throw JSONError("Unsupported type. Failed.")
