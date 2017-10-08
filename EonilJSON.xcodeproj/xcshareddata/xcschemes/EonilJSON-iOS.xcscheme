@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "458E59751F89AE4B0050C1CF"
-               BuildableName = "libEonilJSON-iOS.a"
+               BuildableName = "libEonilJSON.a"
                BlueprintName = "EonilJSON-iOS"
                ReferencedContainer = "container:EonilJSON.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "451C946C1D0451D800C5F640"
+               BlueprintIdentifier = "458E59821F89AE610050C1CF"
                BuildableName = "EonilJSON-iOS-Tests.xctest"
                BlueprintName = "EonilJSON-iOS-Tests"
                ReferencedContainer = "container:EonilJSON.xcodeproj">
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "458E59751F89AE4B0050C1CF"
-            BuildableName = "libEonilJSON-iOS.a"
+            BuildableName = "libEonilJSON.a"
             BlueprintName = "EonilJSON-iOS"
             ReferencedContainer = "container:EonilJSON.xcodeproj">
          </BuildableReference>
@@ -67,7 +67,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "458E59751F89AE4B0050C1CF"
-            BuildableName = "libEonilJSON-iOS.a"
+            BuildableName = "libEonilJSON.a"
             BlueprintName = "EonilJSON-iOS"
             ReferencedContainer = "container:EonilJSON.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "458E59751F89AE4B0050C1CF"
-            BuildableName = "libEonilJSON-iOS.a"
+            BuildableName = "libEonilJSON.a"
             BlueprintName = "EonilJSON-iOS"
             ReferencedContainer = "container:EonilJSON.xcodeproj">
          </BuildableReference>
