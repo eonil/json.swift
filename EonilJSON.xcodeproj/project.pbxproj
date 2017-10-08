@@ -14,7 +14,7 @@
 		458E596B1F89AE100050C1CF /* libEonilJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E59551F89ACE00050C1CF /* libEonilJSON.a */; };
 		458E59711F89AE1C0050C1CF /* TestAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4565F64B1DDF3EAD00D3AEAF /* TestAll.swift */; };
 		458E59861F89AE620050C1CF /* EonilJSON_iOS_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E59851F89AE620050C1CF /* EonilJSON_iOS_Tests.swift */; };
-		458E59881F89AE620050C1CF /* libEonilJSON-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E59761F89AE4B0050C1CF /* libEonilJSON-iOS.a */; };
+		458E59881F89AE620050C1CF /* libEonilJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458E59761F89AE4B0050C1CF /* libEonilJSON.a */; };
 		458E598E1F89AE8D0050C1CF /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C945F1D044AD200C5F640 /* JSON.swift */; };
 		458E598F1F89AE8D0050C1CF /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94621D044AD200C5F640 /* JSONValue.swift */; };
 		458E59901F89AE8D0050C1CF /* JSONOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C94611D044AD200C5F640 /* JSONOperators.swift */; };
@@ -61,7 +61,7 @@
 		458E59551F89ACE00050C1CF /* libEonilJSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEonilJSON.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E59661F89AE100050C1CF /* EonilJSON-macOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EonilJSON-macOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E596A1F89AE100050C1CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		458E59761F89AE4B0050C1CF /* libEonilJSON-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libEonilJSON-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		458E59761F89AE4B0050C1CF /* libEonilJSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEonilJSON.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E59831F89AE610050C1CF /* EonilJSON-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EonilJSON-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		458E59851F89AE620050C1CF /* EonilJSON_iOS_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EonilJSON_iOS_Tests.swift; sourceTree = "<group>"; };
 		458E59871F89AE620050C1CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				458E59881F89AE620050C1CF /* libEonilJSON-iOS.a in Frameworks */,
+				458E59881F89AE620050C1CF /* libEonilJSON.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +118,7 @@
 			children = (
 				458E59551F89ACE00050C1CF /* libEonilJSON.a */,
 				458E59661F89AE100050C1CF /* EonilJSON-macOS-Tests.xctest */,
-				458E59761F89AE4B0050C1CF /* libEonilJSON-iOS.a */,
+				458E59761F89AE4B0050C1CF /* libEonilJSON.a */,
 				458E59831F89AE610050C1CF /* EonilJSON-iOS-Tests.xctest */,
 			);
 			name = Products;
@@ -231,7 +231,7 @@
 			);
 			name = "EonilJSON-iOS";
 			productName = "EonilJSON-iOS";
-			productReference = 458E59761F89AE4B0050C1CF /* libEonilJSON-iOS.a */;
+			productReference = 458E59761F89AE4B0050C1CF /* libEonilJSON.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		458E59821F89AE610050C1CF /* EonilJSON-iOS-Tests */ = {
@@ -557,7 +557,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -572,7 +571,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
