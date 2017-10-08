@@ -1,5 +1,5 @@
 language: swift
 os: osx
-osx_image: xcode8.2
-script: Tools/test.bash
+osx_image: xcode9
+script: Tools/ci.bash
 

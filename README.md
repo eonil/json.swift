@@ -30,8 +30,7 @@ semantics closely as much as possible.
 
 - Smaller.
     - Minimal feature set. No extras.
-    - Small. Release build binary size can be down to around
-        150KiB in optimal condition. (can be larger by conditions)
+    - Now this is provided as a static library. Link only what you want.
 
 Take care that this is not CST. This is an AST intended to be
 used as a part of static serialization code.

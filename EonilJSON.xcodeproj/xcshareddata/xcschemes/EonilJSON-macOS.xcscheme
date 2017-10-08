@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "458E59751F89AE4B0050C1CF"
-               BuildableName = "libEonilJSON-iOS.a"
-               BlueprintName = "EonilJSON-iOS"
+               BlueprintIdentifier = "458E59541F89ACE00050C1CF"
+               BuildableName = "libEonilJSON.a"
+               BlueprintName = "EonilJSON-macOS"
                ReferencedContainer = "container:EonilJSON.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "451C946C1D0451D800C5F640"
-               BuildableName = "EonilJSON-iOS-Tests.xctest"
-               BlueprintName = "EonilJSON-iOS-Tests"
+               BlueprintIdentifier = "451C948F1D04595400C5F640"
+               BuildableName = "EonilJSON-macOS-Tests.xctest"
+               BlueprintName = "EonilJSON-macOS-Tests"
                ReferencedContainer = "container:EonilJSON.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "458E59751F89AE4B0050C1CF"
-            BuildableName = "libEonilJSON-iOS.a"
-            BlueprintName = "EonilJSON-iOS"
+            BlueprintIdentifier = "458E59541F89ACE00050C1CF"
+            BuildableName = "libEonilJSON.a"
+            BlueprintName = "EonilJSON-macOS"
             ReferencedContainer = "container:EonilJSON.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,9 +66,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "458E59751F89AE4B0050C1CF"
-            BuildableName = "libEonilJSON-iOS.a"
-            BlueprintName = "EonilJSON-iOS"
+            BlueprintIdentifier = "458E59541F89ACE00050C1CF"
+            BuildableName = "libEonilJSON.a"
+            BlueprintName = "EonilJSON-macOS"
             ReferencedContainer = "container:EonilJSON.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,9 +84,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "458E59751F89AE4B0050C1CF"
-            BuildableName = "libEonilJSON-iOS.a"
-            BlueprintName = "EonilJSON-iOS"
+            BlueprintIdentifier = "458E59541F89ACE00050C1CF"
+            BuildableName = "libEonilJSON.a"
+            BlueprintName = "EonilJSON-macOS"
             ReferencedContainer = "container:EonilJSON.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
