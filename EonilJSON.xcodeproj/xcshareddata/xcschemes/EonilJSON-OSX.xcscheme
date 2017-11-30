@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0900"
+   LastUpgradeVersion = "0910"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -33,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "451C948F1D04595400C5F640"
+               BlueprintIdentifier = "458E59651F89AE100050C1CF"
                BuildableName = "EonilJSON-macOS-Tests.xctest"
                BlueprintName = "EonilJSON-macOS-Tests"
                ReferencedContainer = "container:EonilJSON.xcodeproj">
